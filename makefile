@@ -1,4 +1,14 @@
 
+verify-test:
+	@./verify $(TEST).in $(TEST).out $(TEST)_prog.out
+	@echo OK
+
+run-test: gen-test
+	cat $(TEST).in | ./Main +RTS -h -M16m > $(TEST)_prog.out
+
+gen-test:
+	perl $(TEST).gen > $(TEST).in
+
 Main:
 	ghc --make Main.hs -rtsopts -prof -auto-all -caf-all -O3
 

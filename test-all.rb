@@ -1,9 +1,8 @@
 Dir['*.gen'].sort.each do |gen|
   name, _ = gen.split('.gen')
   puts "Starting #{name}"
-  `perl #{gen} > #{name}.in`
-  `cat #{name}.in | ./Main +RTS -h -M16m > #{name}_prog.out`
-  ok = `./verify #{name}.in #{name}.out #{name}_prog.out && echo OK`
+  `make run-test TEST=#{name}`
+  ok = `make -s verify-test TEST=#{name}`
   fail "#{name} failed with #{ok}" unless ok.strip.upcase == 'OK'
   puts '..done'
 end
