@@ -1,0 +1,13 @@
+*.gen
+*.out
+*.in
+*.hp
+*.hi
+*.o
+*.aux
+*.png
+Main
+*.ps
+*.tgz
+verify
+verify.cpp
